@@ -1,0 +1,13 @@
+## BACK-END API
+
+Utilize os seguintes comandos para rodar o projeto:
+
+COMPOSER INSTALL
+
+PHP ARTISAN MIGRATE
+
+PHP ARTISAN DB:SEED 
+
+PHP ARTISAN CONFIG:CACHE 
+
+PHP ARTISAN SERVE
