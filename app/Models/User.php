@@ -47,8 +47,26 @@ class User extends Authenticatable
     {
         $conditions = [];
 
+        if(isset($request['name']) && !empty($request['name'])){
+            $conditions[] = ['name' ,'LIKE', '%'.$request['name'].'%'];
+        }
+
+        if(isset($request['cpf']) && !empty($request['cpf'])){
+            $conditions[] = ['cpf' ,'LIKE', '%'.$request['cpf'].'%'];
+        }
+
+        if(isset($request['data_inicio']) && !empty($request['data_inicio'])){
+            $conditions[] = ['created_at' ,'>=', $request['data_inicio']];
+        }
+
+
+        if(isset($request['data_fim']) && !empty($request['data_fim'])){
+            $conditions[] = ['created_at' ,'<=', $request['data_fim']];
+        }
+
         return $this
             ->with('perfil')
+            ->where($conditions)
             ->orderBy('id', 'DESC')
             ->paginate(15);
     }
